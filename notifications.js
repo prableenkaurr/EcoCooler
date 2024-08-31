@@ -25,37 +25,32 @@ function showNotification(title, message) {
     }
 }
 
-// Function to check for heat alerts, hydration reminders, and tips
-function checkAlertsAndTips() {
-    const temperature = 30; // Example temperature (in Celsius)
-    const hydrationReminderInterval = 2000; // Every hour
-
-    // Heat alert
-    if (temperature > 35) {
-        showNotification('Heat Alert', 'The temperature is very high. Stay hydrated and avoid going out during peak hours.');
-    }
-
-    // Hydration reminder
+// Function to set up notifications
+function setupNotifications() {
+    // Hydration reminder every 2 seconds
     setInterval(() => {
         showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-    }, hydrationReminderInterval);
-}
+    }, 2000); // 2 seconds
 
-// Function to display sustainable tips
-function showSustainableTips() {
+    // Sunscreen reminder every 5 seconds
+    setInterval(() => {
+        showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
+    }, 5000); // 5 seconds
+
+    // Sustainable tips every 10 seconds
     const tips = [
         'Wear light-colored clothing to stay cool.',
         'Use a fan or air conditioner wisely to reduce energy consumption.',
         'Opt for eco-friendly cooling products.'
     ];
-
-    const tipsOutput = document.getElementById('tips-output');
-    tipsOutput.innerHTML = tips.map(tip => `<p>${tip}</p>`).join('');
+    setInterval(() => {
+        const randomTip = tips[Math.floor(Math.random() * tips.length)];
+        showNotification('Sustainable Tip', randomTip);
+    }, 10000); // 10 seconds
 }
 
-// Initialize alerts, reminders, and tips on page load
+// Initialize notifications on page load
 window.onload = () => {
     requestNotificationPermission();
-    checkAlertsAndTips();
-    showSustainableTips();
+    setupNotifications();
 };
