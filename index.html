@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App</title>
+    <title>EcoCooler</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <nav>
+        <ul>
+            <li><a href="#sunscreen-section">Sunscreen</a></li>
+            <li><a href="#notifications-section">Notifications</a></li>
+            <li><a href="#tips-section">Sustainable Tips</a></li>
+        </ul>
+    </nav>
+
+    <div id="sunscreen-section">
+        <h2>Sustainable Sunscreen Recommendation</h2>
+        <form id="sunscreen-form">
+            <label for="skin-type">Select your skin type:</label>
+            <select id="skin-type">
+                <option value="Select">Select</option>
+                <option value="dry">Dry</option>
+                <option value="oily">Oily</option>
+                <option value="combination">Combination</option>
+            </select>
+            <br>
+
+            <label>
+                <input type="checkbox" id="sensitive-skin">
+                I have sensitive skin
+            </label>
+            <br>
+
+            <label for="city-name">Enter your city:</label>
+            <input type="text" id="city-name" placeholder="e.g., Los Angeles">
+            <button type="button" id="use-current-location">Use Current Location</button>
+            <br>
+            
+            <button type="submit">Select Sustainable Sunscreen</button>
+        </form>
+        <div id="sunscreen-output"></div>
+    </div>
+
+    <div id="notifications-section">
+        <h2>Notifications</h2>
+        <div id="notifications-output"></div>
+    </div>
+
+    <div id="tips-section">
+        <h2>Sustainable Tips for Staying Cool</h2>
+        <div id="tips-output"></div>
+    </div>
+
     <script src="app.js"></script>
+    <script src="notifications.js"></script>
 </body>
 </html>
-
