@@ -24,12 +24,20 @@ function showNotification(title, message) {
             icon: 'path/to/icon.png' // Optional: add an icon path
         });
 
-        // Add the notification to the record
-        addNotificationToRecord(title, message);
-    } else {
-        console.warn('Notification permission is not granted');
-    }
+        // Add the notification to the record in the HTML
+function addNotificationToRecord(title, message) {
+    const notificationsOutput = document.getElementById('notifications-output');
+    const notificationDiv = document.createElement('div');
+    notificationDiv.className = 'notification';
+    notificationDiv.innerHTML = `
+        <strong>${title}</strong>
+        <time>${new Date().toLocaleString()}</time>
+        <p>${message}</p>
+    `;
+    // Prepend new notifications to show the latest at the top
+    notificationsOutput.prepend(notificationDiv);
 }
+
 
 // Add notification to the record in the HTML
 function addNotificationToRecord(title, message) {
