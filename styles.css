@@ -1,51 +1,103 @@
+/* styles.css */
+
+/* Apply a pink to orange gradient background */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #e2e2e2, #ffffff); /* Soft gradient background */
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    font-family: Arial, sans-serif;
+    color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
-    max-width: 600px; /* Restrict width for readability */
+header {
+    background-color: #fff;
     padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 2em;
+    color: #ff7e5f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    background-color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     text-align: center;
 }
 
-h1 {
-    color: #2a9d8f; /* Teal color for the theme */
-    font-size: 2em;
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ff7e5f;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff7e5f;
+    border-bottom: 2px solid #ff7e5f;
+    padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
-#notifications-output {
+form {
     display: flex;
-    flex-direction: column-reverse; /* Latest notification at the top */
-    margin: 20px 0;
-    max-height: 400px; /* Adjust based on preference */
-    overflow-y: auto; /* Add scrollbar if needed */
+    flex-direction: column;
 }
 
-.notification {
-    background-color: #d9fbe9; /* Light green for sustainability theme */
-    color: #2a9d8f;
-    border: 1px solid #b3f0c6;
-    border-radius: 5px;
-    padding: 15px;
+label {
     margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 1.1em;
 }
 
-.notification time {
-    display: block;
-    font-size: 0.9em;
-    color: #6c757d;
-    margin-bottom: 5px;
+select, input[type="text"] {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
 }
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff7e5f;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #feb47b;
+}
+
+#sunscreen-output {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
