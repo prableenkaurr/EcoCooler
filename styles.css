@@ -1,23 +1,77 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffcc99, #ff99cc); /* Light pink and orange gradient */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #ff6600; /* Bright orange */
+    margin: 0;
+}
+
+/* Sunscreen Section Styles */
+#sunscreen-section {
+    text-align: center;
+    background: #e6f9ff; /* Light blue */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#sunscreen-section h2 {
+    font-size: 2em;
+    color: #003366; /* Dark blue */
+    margin-bottom: 10px;
+}
+
+#sunscreen-section p {
+    font-size: 1.2em;
+    color: #00509e; /* Deep blue */
+}
+
+/* Notifications Styles */
 #notifications-output {
     display: flex;
-    flex-direction: column-reverse; /* Latest notification at the top */
-    margin: 20px 0;
-    max-height: 400px; /* Adjust based on preference */
-    overflow-y: auto; /* Add scrollbar if needed */
+    flex-direction: column-reverse;
+    margin: 0;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .notification {
-    background-color: #fff3cd; /* Light yellow for notifications */
-    color: #856404;
-    border: 1px solid #ffeeba;
+    background-color: #d4edda; /* Light green for notifications */
+    color: #155724; /* Dark green */
+    border: 1px solid #c3e6cb;
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .notification time {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #6c757d;
     margin-bottom: 5px;
 }

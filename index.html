@@ -7,63 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        SunShield
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#sunscreen-section">Sunscreen</a></li>
-            <li><a href="#notifications-section">Notifications</a></li>
-            <li><a href="#tips-section">Sustainable Tips</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="sunscreen-section">
-            <h2>Sustainable Sunscreen Recommendation</h2>
-            <form id="sunscreen-form">
-                <label for="skin-type">Select your skin type:</label>
-                <select id="skin-type">
-                    <option value="Select">Select</option>
-                    <option value="dry">Dry</option>
-                    <option value="oily">Oily</option>
-                    <option value="combination">Combination</option>
-                </select>
-                <br>
-
-                <label>
-                    <input type="checkbox" id="sensitive-skin">
-                    I have sensitive skin
-                </label>
-                <br>
-
-                <label for="city-name">Enter your city:</label>
-                <input type="text" id="city-name" placeholder="e.g., Los Angeles">
-                <button type="button" id="use-current-location">Use Current Location</button>
-                <br>
-                
-                <button type="submit">Select Sustainable Sunscreen</button>
-            </form>
-            <div id="sunscreen-output"></div>
-        </section>
-
-        <section id="notifications-section">
-            <h2>Notifications</h2>
-            <button onclick="requestNotificationPermission()">Enable Notifications</button>
-            <div id="notifications-output"></div>
-
-                <!-- Notifications will be dynamically inserted here -->
+    <div class="container">
+        <header>
+            <h1>SunShield</h1>
+        </header>
+        <main>
+            <div id="sunscreen-section">
+                <h2>Sunscreen Reminder</h2>
+                <p>Remember to reapply your sunscreen to protect your skin!</p>
             </div>
-        </section>
-
-        <section id="tips-section">
-            <h2>Sustainable Tips for Staying Cool</h2>
-            <div id="tips-output"></div>
-        </section>
-    </main>
-
-    <script src="app.js"></script>
-    <script src="notifications.js" defer></script>
+            <div id="notifications-output"></div>
+        </main>
+        <script src="script.js"></script>
+    </div>
 </body>
 </html>
