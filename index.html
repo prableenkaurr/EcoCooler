@@ -45,10 +45,19 @@
             </form>
             <div id="sunscreen-output"></div>
         </section>
+        <section id="notifications-section">
+            <h2>Notifications</h2>
+            <button onclick="requestNotificationPermission()">Enable Notifications</button>
+            <div id="notifications-output">
+            <div id="notifications-output"></div>
 
+                <!-- Notifications will be dynamically inserted here -->
+            </div>
+        </section>
     </main>
 
     <script src="app.js"></script>
+    <script src="notifications.js"></script>
     <script src="notifications.js" defer></script>
 </body>
 </html>
