@@ -15,14 +15,21 @@ function requestNotificationPermission() {
     }
 }
 
-// Show a browser notification and add it to the record
 function showNotification(title, message) {
     if (Notification.permission === 'granted') {
         // Create and display the browser notification
         new Notification(title, {
             body: message,
-            icon: 'path/to/icon.png' 
+            icon: 'path/to/icon.png'
         });
+
+        // Add the notification to the record in the HTML
+        addNotificationToRecord(title, message);
+    } else {
+        console.warn('Notification permission is not granted');
+    }
+}
+
 
 // Add the notification to the record in the HTML
 function addNotificationToRecord(title, message) {
