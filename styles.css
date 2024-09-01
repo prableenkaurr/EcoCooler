@@ -2,7 +2,7 @@
 
 /* Apply a pink to orange gradient background */
 body {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background: linear-gradient(to right, #c86172, #f9a565);
     font-family: Arial, sans-serif;
     color: #333;
     margin: 0;
