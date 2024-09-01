@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +51,17 @@
         <section id="notifications-section">
             <h2>Notifications</h2>
             <button onclick="requestNotificationPermission()">Enable Notifications</button>
-            <div id="notifications-output"></div>
+            <div id="notifications-output">
+                <!-- Notifications will be dynamically inserted here with timestamps -->
+                <div class="notification">
+                    <time>2024-09-01T12:00:00</time>
+                    New sunscreen recommendation available!
+                </div>
+                <div class="notification">
+                    <time>2024-09-01T11:30:00</time>
+                    Don’t forget to reapply sunscreen every 2 hours!
+                </div>
+            </div>
         </section>
 
         <section id="tips-section">

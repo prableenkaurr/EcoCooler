@@ -16,11 +16,21 @@ header {
 }
 
 nav {
-    margin: 0 auto;
-    max-width: 800px;
-    text-align: center;
-    padding: 10px 0;
     background-color: #388e3c; /* Slightly darker green for nav bar */
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation items horizontally */
+}
+
+nav li {
+    margin: 0 15px;
 }
 
 nav a {
@@ -52,7 +62,7 @@ section {
     margin-bottom: 30px;
 }
 
-h1, h2 {
+h2 {
     margin: 0 0 15px;
     color: #2e7d32;
     text-align: center; /* Center-align headings */
@@ -74,13 +84,13 @@ h1, h2 {
     text-align: left; /* Align labels to the left */
 }
 
-#sunscreen-form select {
+#sunscreen-form select, #sunscreen-form input[type="text"], #sunscreen-form button {
     padding: 8px;
     border: 1px solid #a5d6a7; /* Soft green border */
     border-radius: 5px;
+    margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 15px;
 }
 
 #sunscreen-output, #notifications-output, #tips-output {
@@ -91,6 +101,10 @@ h1, h2 {
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left; /* Align text to the left */
+}
+
+#notifications-section {
+    margin-top: 20px;
 }
 
 #notifications-output {
@@ -108,17 +122,19 @@ h1, h2 {
     margin-bottom: 10px;
 }
 
+.notification time {
+    display: block;
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
 #tips-output {
     margin: 20px 0;
     font-style: italic;
     color: #6a1b9a; /* Purple to add a contrasting color for tips */
 }
 
-#sunscreen-output {
-    margin: 20px 0;
-}
-
-/* Button styling */
 button {
     padding: 10px 20px;
     font-size: 1em;
@@ -151,6 +167,14 @@ form {
         margin: 10px;
     }
     
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin: 10px 0;
+    }
+
     nav a {
         padding: 10px;
         font-size: 0.9em;
@@ -160,7 +184,7 @@ form {
         font-size: 1.5em;
     }
 
-    h1, h2 {
+    h2 {
         font-size: 1.5em;
     }
 }
