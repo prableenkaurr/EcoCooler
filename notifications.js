@@ -41,7 +41,8 @@ function addNotificationToRecord(title, message) {
         <time>${new Date().toLocaleString()}</time>
         <p>${message}</p>
     `;
-    notificationsOutput.prepend(notificationDiv); // Add new notifications at the top
+    // Prepend new notifications to show the latest at the top
+    notificationsOutput.prepend(notificationDiv);
 }
 
 // Function to set up notifications
