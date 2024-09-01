@@ -1,100 +1,142 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Serif Display', serif;
     margin: 0;
     padding: 0;
     color: #333;
+    background-color: #f0f4f0; /* Light, soft green background for a sustainable feel */
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #2e7d32; /* Dark green color for header */
     color: white;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 nav {
     margin: 0 auto;
     max-width: 800px;
     text-align: center;
+    padding: 10px 0;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     padding: 0 15px;
+    font-size: 1em;
+    transition: color 0.3s;
 }
 
 nav a:hover {
     text-decoration: underline;
+    color: #a5d6a7; /* Lighter green for hover effect */
 }
 
 main {
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 h1, h2 {
-    margin: 0 0 10px;
+    margin: 0 0 15px;
+    color: #2e7d32;
 }
 
 #sunscreen-form {
     margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #c8e6c9; /* Light green border */
+    border-radius: 10px;
+    background-color: #e8f5e9; /* Very light green background */
 }
 
 #sunscreen-form label {
     display: block;
     margin-bottom: 10px;
+    font-weight: bold;
+    color: #388e3c; /* Slightly darker green */
 }
 
 #sunscreen-form select {
-    padding: 5px;
+    padding: 8px;
+    border: 1px solid #a5d6a7; /* Soft green border */
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
 #sunscreen-output, #notifications-output, #tips-output {
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #notifications-output {
     display: flex;
     flex-direction: column;
+    margin: 20px 0;
 }
 
 .notification {
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Basic styles for notifications */
-#notifications-output {
-    margin: 20px;
-}
-
-.notification {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #fff3cd; /* Light yellow for warning */
+    color: #856404;
+    border: 1px solid #ffeeba;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
 }
 
 #tips-output {
-    margin: 20px;
+    margin: 20px 0;
     font-style: italic;
+    color: #6a1b9a; /* Purple to add a contrasting color for tips */
 }
 
 #sunscreen-output {
-    margin: 20px;
+    margin: 20px 0;
 }
 
-/* Basic form styling */
+/* Form styling */
 form {
-    margin: 20px;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f7f7f7; /* Light grey background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    nav a {
+        padding: 0 10px;
+        font-size: 0.9em;
+    }
+
+    header {
+        font-size: 1.2em;
+    }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
 }
