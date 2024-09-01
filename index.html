@@ -7,11 +7,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>SunShield</h1>
-        <div id="notifications-output"></div>
-    </div>
+    <header>
+        SunShield
+    </header>
 
-    <script src="script.js"></script>
+    <nav>
+        <ul>
+            <li><a href="#sunscreen-section">Sunscreen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="sunscreen-section">
+            <h2>Sustainable Sunscreen Recommendation</h2>
+            <form id="sunscreen-form">
+                <label for="skin-type">Select your skin type:</label>
+                <select id="skin-type">
+                    <option value="Select">Select</option>
+                    <option value="dry">Dry</option>
+                    <option value="oily">Oily</option>
+                    <option value="combination">Combination</option>
+                </select>
+                <br>
+
+                <label>
+                    <input type="checkbox" id="sensitive-skin">
+                    I have sensitive skin
+                </label>
+                <br>
+
+                <label for="city-name">Enter your city:</label>
+                <input type="text" id="city-name" placeholder="e.g., Los Angeles">
+                <button type="button" id="use-current-location">Use Current Location</button>
+                <br>
+                
+                <button type="submit">Select Sustainable Sunscreen</button>
+            </form>
+            <div id="sunscreen-output"></div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script src="notifications.js" defer></script>
 </body>
 </html>
