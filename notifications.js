@@ -289,7 +289,7 @@ function setupNotifications() {
         }, 5000); // 5 seconds
 
         // Sustainability tip every 5 seconds
-        setInterval(fetchAndDisplayWeatherData, 5000); // 5 seconds
+        setInterval(fetchAndDisplayWeatherData, 6000); // 6 seconds
 
         // Strong weather alerts check every 10 seconds
         setInterval(fetchAndDisplayWeatherData, 10000); // 10 seconds
