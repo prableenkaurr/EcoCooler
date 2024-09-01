@@ -15,16 +15,33 @@ function requestNotificationPermission() {
     }
 }
 
-// Show a browser notification
+// Show a browser notification and add it to the record
 function showNotification(title, message) {
     if (Notification.permission === 'granted') {
+        // Create and display the browser notification
         new Notification(title, {
             body: message,
             icon: 'path/to/icon.png' // Optional: add an icon path
         });
+
+        // Add the notification to the record
+        addNotificationToRecord(title, message);
     } else {
         console.warn('Notification permission is not granted');
     }
+}
+
+// Add notification to the record in the HTML
+function addNotificationToRecord(title, message) {
+    const notificationsOutput = document.getElementById('notifications-output');
+    const notificationDiv = document.createElement('div');
+    notificationDiv.className = 'notification';
+    notificationDiv.innerHTML = `
+        <strong>${title}</strong>
+        <time>${new Date().toLocaleString()}</time>
+        <p>${message}</p>
+    `;
+    notificationsOutput.prepend(notificationDiv); // Add new notifications at the top
 }
 
 // Function to set up notifications
@@ -52,7 +69,3 @@ function setupNotifications() {
         }, 60000); // 60 seconds
     }
 }
-
-// Call `requestNotificationPermission` on button click
-// (The button click should be present in your HTML)
-// <button onclick="requestNotificationPermission()">Enable Notifications</button>
