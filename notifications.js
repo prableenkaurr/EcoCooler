@@ -18,13 +18,11 @@ function requestNotificationPermission() {
 // Show a browser notification and add it to the record
 function showNotification(title, message) {
     if (Notification.permission === 'granted') {
-        // Create and display the browser notification
         new Notification(title, {
             body: message,
             icon: 'path/to/icon.png' // Optional: add an icon path
         });
 
-        // Add the notification to the record
         addNotificationToRecord(title, message);
     } else {
         console.warn('Notification permission is not granted');
@@ -41,8 +39,7 @@ function addNotificationToRecord(title, message) {
         <time>${new Date().toLocaleString()}</time>
         <p>${message}</p>
     `;
-    // Prepend new notifications to show the latest at the top
-    notificationsOutput.prepend(notificationDiv);
+    notificationsOutput.prepend(notificationDiv); // Show the latest notification at the top
 }
 
 // Fetch weather data based on location (latitude & longitude or city name)
@@ -71,31 +68,31 @@ function generateSustainabilityTip(weatherData) {
     let tip = '';
 
     // Weather-based tips
-    if (temp > 30) { // Hot weather
-        tip = `It's currently very hot. Stay cool by using eco-friendly cooling products and drink plenty of water.`;
-    } else if (temp < 0) { // Cold weather
-        tip = `It's freezing outside. Conserve energy by wearing warm clothing and using energy-efficient heating solutions.`;
-    } else if (humidity > 70) { // High humidity
-        tip = `With high humidity today, use dehumidifiers wisely to prevent mold growth and conserve energy.`;
-    } else if (weatherCondition.includes('rain')) { // Rainy weather
-        tip = `It's raining right now. Use rainwater harvesting systems to reduce water waste.`;
-    } else if (weatherCondition.includes('sunny')) { // Sunny weather
-        tip = `It's sunny outside. Consider using solar energy solutions for your power needs.`;
-    } else if (weatherCondition.includes('wind')) { // Windy weather
-        tip = `It's quite windy today. Secure outdoor items and use wind power for energy needs if possible.`;
-    } else if (weatherCondition.includes('snow')) { // Snowy weather
-        tip = `It's snowing right now. Maintain your heating system to ensure efficient energy use during snowy conditions.`;
-    } else if (weatherCondition.includes('fog')) { // Foggy weather
-        tip = `It's foggy outside. Ensure your vehicle uses low-energy fog lights and reduce driving to save energy.`;
-    } else if (weatherCondition.includes('cloudy')) { // Cloudy weather
-        tip = `It's cloudy today. Use daylight to reduce artificial lighting and consider using energy-efficient bulbs.`;
-    } else if (weatherCondition.includes('clear')) { // Clear weather
-        tip = `It's clear outside. Maximize natural light to reduce electricity usage during clear days.`;
-    } else { // Default tip for other conditions
+    if (temp > 30) {
+        tip = 'It\'s currently very hot. Stay cool by using eco-friendly cooling products and drink plenty of water.';
+    } else if (temp < 0) {
+        tip = 'It\'s freezing outside. Conserve energy by wearing warm clothing and using energy-efficient heating solutions.';
+    } else if (humidity > 70) {
+        tip = 'With high humidity today, use dehumidifiers wisely to prevent mold growth and conserve energy.';
+    } else if (weatherCondition.includes('rain')) {
+        tip = 'It\'s raining right now. Use rainwater harvesting systems to reduce water waste.';
+    } else if (weatherCondition.includes('sunny')) {
+        tip = 'It\'s sunny outside. Consider using solar energy solutions for your power needs.';
+    } else if (weatherCondition.includes('wind')) {
+        tip = 'It\'s quite windy today. Secure outdoor items and use wind power for energy needs if possible.';
+    } else if (weatherCondition.includes('snow')) {
+        tip = 'It\'s snowing right now. Maintain your heating system to ensure efficient energy use during snowy conditions.';
+    } else if (weatherCondition.includes('fog')) {
+        tip = 'It\'s foggy outside. Ensure your vehicle uses low-energy fog lights and reduce driving to save energy.';
+    } else if (weatherCondition.includes('cloudy')) {
+        tip = 'It\'s cloudy today. Use daylight to reduce artificial lighting and consider using energy-efficient bulbs.';
+    } else if (weatherCondition.includes('clear')) {
+        tip = 'It\'s clear outside. Maximize natural light to reduce electricity usage during clear days.';
+    } else {
         tip = 'Choose sustainable practices to minimize your environmental impact.';
     }
 
-    // Strong weather alerts
+    // Specific weather alerts
     if (alert && alert.type) {
         switch (alert.type.toLowerCase()) {
             case 'heat':
@@ -116,7 +113,7 @@ function generateSustainabilityTip(weatherData) {
         }
     }
 
-    // Additional specific and diverse tips
+    // Additional specific tips
     const specificTips = [
         'Opt for programmable thermostats to optimize energy use.',
         'Use energy-efficient appliances to reduce electricity consumption.',
@@ -194,64 +191,30 @@ function generateSustainabilityTip(weatherData) {
         'Opt for reusable shopping bags to reduce plastic waste.',
         'Choose eco-friendly packaging options for gifts and products.',
         'Support sustainable agriculture by buying from local farmers.',
-        'Practice responsible pet ownership by supporting animal welfare initiatives.',
-        'Promote environmental stewardship through community involvement.',
-        'Use water-efficient landscaping techniques to conserve water resources.',
-        'Educate yourself about climate change and its impact on the environment.'
+        'Practice responsible pet ownership by supporting animal shelters.',
+        'Adopt green building practices in home renovations and construction.',
+        'Use energy-efficient appliances and lighting to reduce your carbon footprint.',
+        'Encourage others to make sustainable choices in their daily lives.'
     ];
 
-    // Choose a tip
-    const useWeatherBasedTip = Math.random() < 0.5; // 50% chance to use weather-based tip
-    if (useWeatherBasedTip) {
-        return tip; // Return weather-based tip
-    } else {
-        const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
-        return randomTip; // Return specific random tip
+    // Add a random tip to the notification
+    const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
+    tip += `\n\nAdditional Tip: ${randomTip}`;
+
+    return tip;
+}
+
+// Main function to start the notification process
+async function setupNotifications() {
+    const location = { city: 'Los Angeles' }; // Default city for demonstration; adjust as needed
+    try {
+        const weatherData = await fetchWeatherData(location);
+        const sustainabilityTip = generateSustainabilityTip(weatherData);
+        showNotification('Sustainability Tip', sustainabilityTip);
+    } catch (error) {
+        console.error('Error fetching weather data or showing notification:', error);
     }
 }
 
-// Function to get user location and update sustainability tips
-async function getUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            const location = {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            };
-            try {
-                const weatherData = await fetchWeatherData(location);
-                const tip = generateSustainabilityTip(weatherData);
-                showNotification('Sustainability Tip', tip);
-            } catch (error) {
-                console.error('Error fetching weather data:', error);
-            }
-        }, (error) => {
-            console.error('Error getting location:', error);
-        });
-    } else {
-        console.error('Geolocation is not supported by this browser.');
-    }
-}
-
-// Function to set up notifications
-function setupNotifications() {
-    if (Notification.permission === 'granted') {
-        // Hydration reminder every 20 seconds
-        setInterval(() => {
-            showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-        }, 20000); // 20 seconds
-
-        // Sunscreen reminder every 30 seconds
-        setInterval(() => {
-            showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
-        }, 30000); // 30 seconds
-
-        // Update sustainable tips based on weather conditions or random tips every 30 seconds
-        setInterval(() => {
-            getUserLocation(); // Get location and update tips
-        }, 30000); // 30 seconds
-    }
-}
-
-// Start by requesting notification permission
+// Call the function to request notification permission and set up notifications
 requestNotificationPermission();
