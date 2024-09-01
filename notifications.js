@@ -21,7 +21,7 @@ function showNotification(title, message) {
         // Create and display the browser notification
         new Notification(title, {
             body: message,
-            icon: 'path/to/icon.png' // Optional: add an icon path
+            icon: 'path/to/icon.png' 
         });
 
         // Add the notification to the record in the HTML
@@ -37,22 +37,6 @@ function addNotificationToRecord(title, message) {
     // Prepend new notifications to show the latest at the top
     notificationsOutput.prepend(notificationDiv);
 }
-
-
-// Add notification to the record in the HTML
-function addNotificationToRecord(title, message) {
-    const notificationsOutput = document.getElementById('notifications-output');
-    const notificationDiv = document.createElement('div');
-    notificationDiv.className = 'notification';
-    notificationDiv.innerHTML = `
-        <strong>${title}</strong>
-        <time>${new Date().toLocaleString()}</time>
-        <p>${message}</p>
-    `;
-    // Prepend new notifications to show the latest at the top
-    notificationsOutput.prepend(notificationDiv);
-}
-
 // Fetch weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
     const apiKey = '78538db3899e42e29fa190912242508'; // Replace with your actual API key
