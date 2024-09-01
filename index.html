@@ -1,51 +1,17 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #e2e2e2, #ffffff); /* Soft gradient background */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SunShield</h1>
+        <div id="notifications-output"></div>
+    </div>
 
-.container {
-    width: 100%;
-    max-width: 600px; /* Restrict width for readability */
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-h1 {
-    color: #2a9d8f; /* Teal color for the theme */
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-#notifications-output {
-    display: flex;
-    flex-direction: column-reverse; /* Latest notification at the top */
-    margin: 20px 0;
-    max-height: 400px; /* Adjust based on preference */
-    overflow-y: auto; /* Add scrollbar if needed */
-}
-
-.notification {
-    background-color: #d9fbe9; /* Light green for sustainability theme */
-    color: #2a9d8f;
-    border: 1px solid #b3f0c6;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.notification time {
-    display: block;
-    font-size: 0.9em;
-    color: #6c757d;
-    margin-bottom: 5px;
-}
+    <script src="script.js"></script>
+</body>
+</html>
