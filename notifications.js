@@ -66,54 +66,54 @@ async function fetchWeatherData(location) {
 
 // Generate tips based on weather data
 function generateSustainabilityTip(weatherData) {
-    const { temp_c: temp, humidity, condition } = weatherData.current;
+    const { temp_c: temp, humidity, condition, alert } = weatherData.current;
     const weatherCondition = condition.text.toLowerCase();
-
     let tip = '';
 
-    // Hot weather
-    if (temp > 30) {
-        tip = 'Stay cool by using eco-friendly cooling products and drink plenty of water.';
-    }
-    // Cold weather
-    else if (temp < 0) {
-        tip = 'Conserve energy by wearing warm clothing and using energy-efficient heating solutions.';
-    }
-    // High humidity
-    else if (humidity > 70) {
-        tip = 'Use dehumidifiers wisely to prevent mold growth and conserve energy.';
-    }
-    // Rainy weather
-    else if (weatherCondition.includes('rain')) {
-        tip = 'Use rainwater harvesting systems to reduce water waste.';
-    }
-    // Sunny weather
-    else if (weatherCondition.includes('sunny')) {
-        tip = 'Consider using solar energy solutions for your power needs.';
-    }
-    // Windy weather
-    else if (weatherCondition.includes('wind')) {
-        tip = 'Secure outdoor items and use wind power for energy needs if possible.';
-    }
-    // Snowy weather
-    else if (weatherCondition.includes('snow')) {
-        tip = 'Maintain your heating system to ensure efficient energy use during snowy conditions.';
-    }
-    // Foggy weather
-    else if (weatherCondition.includes('fog')) {
-        tip = 'Ensure your vehicle uses low-energy fog lights and reduce driving to save energy.';
-    }
-    // Cloudy weather
-    else if (weatherCondition.includes('cloudy')) {
-        tip = 'Use daylight to reduce artificial lighting and consider using energy-efficient bulbs.';
-    }
-    // Clear weather
-    else if (weatherCondition.includes('clear')) {
-        tip = 'Maximize natural light to reduce electricity usage during clear days.';
-    }
-    // Default tip
-    else {
+    // Weather-based tips
+    if (temp > 30) { // Hot weather
+        tip = `It's currently very hot. Stay cool by using eco-friendly cooling products and drink plenty of water.`;
+    } else if (temp < 0) { // Cold weather
+        tip = `It's freezing outside. Conserve energy by wearing warm clothing and using energy-efficient heating solutions.`;
+    } else if (humidity > 70) { // High humidity
+        tip = `With high humidity today, use dehumidifiers wisely to prevent mold growth and conserve energy.`;
+    } else if (weatherCondition.includes('rain')) { // Rainy weather
+        tip = `It's raining right now. Use rainwater harvesting systems to reduce water waste.`;
+    } else if (weatherCondition.includes('sunny')) { // Sunny weather
+        tip = `It's sunny outside. Consider using solar energy solutions for your power needs.`;
+    } else if (weatherCondition.includes('wind')) { // Windy weather
+        tip = `It's quite windy today. Secure outdoor items and use wind power for energy needs if possible.`;
+    } else if (weatherCondition.includes('snow')) { // Snowy weather
+        tip = `It's snowing right now. Maintain your heating system to ensure efficient energy use during snowy conditions.`;
+    } else if (weatherCondition.includes('fog')) { // Foggy weather
+        tip = `It's foggy outside. Ensure your vehicle uses low-energy fog lights and reduce driving to save energy.`;
+    } else if (weatherCondition.includes('cloudy')) { // Cloudy weather
+        tip = `It's cloudy today. Use daylight to reduce artificial lighting and consider using energy-efficient bulbs.`;
+    } else if (weatherCondition.includes('clear')) { // Clear weather
+        tip = `It's clear outside. Maximize natural light to reduce electricity usage during clear days.`;
+    } else { // Default tip for other conditions
         tip = 'Choose sustainable practices to minimize your environmental impact.';
+    }
+
+    // Strong weather alerts
+    if (alert && alert.type) {
+        switch (alert.type.toLowerCase()) {
+            case 'heat':
+                tip = 'Heat alert: Stay hydrated, avoid excessive sun exposure, and use cooling systems wisely.';
+                break;
+            case 'storm':
+                tip = 'Storm alert: Secure outdoor items, stay indoors, and follow local safety guidelines.';
+                break;
+            case 'flood':
+                tip = 'Flood alert: Avoid driving through flooded areas, and stay informed about evacuation procedures.';
+                break;
+            case 'wind':
+                tip = 'Wind alert: Secure loose items and avoid outdoor activities that could be hazardous.';
+                break;
+            default:
+                tip = 'Be aware of local weather alerts and take appropriate precautions.';
+                break;
+        }
     }
 
     // Additional specific and diverse tips
@@ -187,33 +187,30 @@ function generateSustainabilityTip(weatherData) {
         'Switch to electric or hybrid vehicles to reduce emissions.',
         'Practice energy conservation by unplugging unused electronics.',
         'Promote sustainable tourism practices when traveling.',
-        'Use eco-friendly personal care products to reduce environmental impact.',
-        'Participate in environmental advocacy and awareness campaigns.',
-        'Consider adopting a plant-based diet to reduce environmental impact.',
-        'Practice responsible disposal of hazardous materials.',
-        'Support companies with transparent sustainability practices.',
-        'Use natural insulation materials to improve home energy efficiency.'
+        'Use eco-friendly personal care products to reduce chemical waste.',
+        'Participate in local recycling programs and composting initiatives.',
+        'Support green building initiatives and sustainable architecture.',
+        'Engage in sustainable fishing practices to protect marine life.',
+        'Opt for reusable shopping bags to reduce plastic waste.',
+        'Choose eco-friendly packaging options for gifts and products.',
+        'Support sustainable agriculture by buying from local farmers.',
+        'Practice responsible pet ownership by supporting animal welfare initiatives.',
+        'Promote environmental stewardship through community involvement.',
+        'Use water-efficient landscaping techniques to conserve water resources.',
+        'Educate yourself about climate change and its impact on the environment.'
     ];
 
-    // Select a random tip from the specificTips array
-    const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
-
-    // Return either weather-based tip or a random specific tip
-    return tip ? tip : randomTip;
-}
-
-// Function to update sustainability tips based on weather conditions
-async function updateSustainabilityTips(location) {
-    try {
-        const weatherData = await fetchWeatherData(location);
-        const tip = generateSustainabilityTip(weatherData);
-        showNotification('Sustainability Tip', tip); // Show notification
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
+    // Choose a tip
+    const useWeatherBasedTip = Math.random() < 0.5; // 50% chance to use weather-based tip
+    if (useWeatherBasedTip) {
+        return tip; // Return weather-based tip
+    } else {
+        const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
+        return randomTip; // Return specific random tip
     }
 }
 
-// Function to get the user's location and update tips
+// Function to get user location and update sustainability tips
 async function getUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
@@ -221,7 +218,13 @@ async function getUserLocation() {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             };
-            await updateSustainabilityTips(location);
+            try {
+                const weatherData = await fetchWeatherData(location);
+                const tip = generateSustainabilityTip(weatherData);
+                showNotification('Sustainability Tip', tip);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
         }, (error) => {
             console.error('Error getting location:', error);
         });
