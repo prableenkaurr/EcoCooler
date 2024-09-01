@@ -198,7 +198,7 @@ function generateSustainabilityTip(weatherData) {
     // Select a random tip from the specificTips array
     const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
 
-    // Return the selected tip
+    // Return either weather-based tip or a random specific tip
     return tip ? tip : randomTip;
 }
 
@@ -207,9 +207,26 @@ async function updateSustainabilityTips(location) {
     try {
         const weatherData = await fetchWeatherData(location);
         const tip = generateSustainabilityTip(weatherData);
-        showNotification('Sustainability Tip', tip); // Update notification
+        showNotification('Sustainability Tip', tip); // Show notification
     } catch (error) {
         console.error('Error fetching weather data:', error);
+    }
+}
+
+// Function to get the user's location and update tips
+async function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const location = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            await updateSustainabilityTips(location);
+        }, (error) => {
+            console.error('Error getting location:', error);
+        });
+    } else {
+        console.error('Geolocation is not supported by this browser.');
     }
 }
 
@@ -226,10 +243,10 @@ function setupNotifications() {
             showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
         }, 30000); // 30 seconds
 
-        // Update sustainable tips based on weather conditions every 60 seconds
+        // Update sustainable tips based on weather conditions or random tips every 30 seconds
         setInterval(() => {
             getUserLocation(); // Get location and update tips
-        }, 60000); // 60 seconds
+        }, 30000); // 30 seconds
     }
 }
 
