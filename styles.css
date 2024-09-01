@@ -11,7 +11,7 @@ header {
     color: white;
     padding: 20px 0;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
 }
 
@@ -20,19 +20,22 @@ nav {
     max-width: 800px;
     text-align: center;
     padding: 10px 0;
+    background-color: #388e3c; /* Slightly darker green for nav bar */
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 0 15px;
+    padding: 10px 20px;
     font-size: 1em;
-    transition: color 0.3s;
+    background-color: #2e7d32; /* Darker green background for buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 nav a:hover {
-    text-decoration: underline;
-    color: #a5d6a7; /* Lighter green for hover effect */
+    background-color: #a5d6a7; /* Lighter green for hover effect */
+    color: #333;
 }
 
 main {
@@ -42,6 +45,7 @@ main {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-align text in the main content */
 }
 
 section {
@@ -51,6 +55,7 @@ section {
 h1, h2 {
     margin: 0 0 15px;
     color: #2e7d32;
+    text-align: center; /* Center-align headings */
 }
 
 #sunscreen-form {
@@ -66,6 +71,7 @@ h1, h2 {
     margin-bottom: 10px;
     font-weight: bold;
     color: #388e3c; /* Slightly darker green */
+    text-align: left; /* Align labels to the left */
 }
 
 #sunscreen-form select {
@@ -84,11 +90,12 @@ h1, h2 {
     background-color: #ffffff;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text to the left */
 }
 
 #notifications-output {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse; /* Show latest notification at the top */
     margin: 20px 0;
 }
 
@@ -111,6 +118,23 @@ h1, h2 {
     margin: 20px 0;
 }
 
+/* Button styling */
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #388e3c; /* Green background for buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2e7d32; /* Darker green on hover */
+}
+
 /* Form styling */
 form {
     margin: 20px 0;
@@ -128,12 +152,12 @@ form {
     }
     
     nav a {
-        padding: 0 10px;
+        padding: 10px;
         font-size: 0.9em;
     }
 
     header {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
 
     h1, h2 {
