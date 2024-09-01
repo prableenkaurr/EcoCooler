@@ -17,7 +17,7 @@ async function getUserLocation() {
 
 // Fetch weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
-    const apiKey = '78538db3899e42e29fa190912242508'; // Replace with your actual API key
+    const apiKey = '78538db3899e42e29fa190912242508';
     let url;
 
     if (location.latitude && location.longitude) {
@@ -141,8 +141,8 @@ document.getElementById('use-current-location').onclick = async () => {
     try {
         const userLocation = await getUserLocation();
         const weatherData = await fetchWeatherData(userLocation);
-        const cityName = weatherData.location.name; // Extract city name from weather data
-        document.getElementById('city-name').value = cityName; // Fill in the city name input field
+        const cityName = weatherData.location.name; 
+        document.getElementById('city-name').value = cityName;
         updateSunscreenRecommendations(userLocation);
     } catch (error) {
         alert("Could not get your current location.");
