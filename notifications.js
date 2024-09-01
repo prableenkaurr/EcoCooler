@@ -24,7 +24,7 @@ function showNotification(title, message) {
             icon: 'path/to/icon.png' 
         });
 
-        // Add the notification to the record in the HTML
+// Add the notification to the record in the HTML
 function addNotificationToRecord(title, message) {
     const notificationsOutput = document.getElementById('notifications-output');
     const notificationDiv = document.createElement('div');
@@ -36,6 +36,25 @@ function addNotificationToRecord(title, message) {
     `;
     // Prepend new notifications to show the latest at the top
     notificationsOutput.prepend(notificationDiv);
+}
+
+// Show a browser notification and add it to the record
+function showNotification(title, message) {
+    if (Notification.permission === 'granted') {
+        // Create and display the browser notification
+        new Notification(title, {
+            body: message,
+            icon: 'path/to/icon.png' 
+        });
+
+        // Add the notification to the record in the HTML
+        addNotificationToRecord(title, message);
+    } else {
+        console.warn('Notification permission is not granted');
+    }
+}
+
+
 }
 // Fetch weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
