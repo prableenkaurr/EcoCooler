@@ -2,14 +2,16 @@
 function requestNotificationPermission() {
     if (Notification.permission !== 'granted') {
         Notification.requestPermission().then(permission => {
-            if (permission !== 'granted') {
-                console.error('Notification permission denied');
-            } else {
+            if (permission === 'granted') {
                 console.log('Notification permission granted');
+                setupNotifications(); // Start notifications only after permission is granted
+            } else {
+                console.error('Notification permission denied');
             }
         }).catch(err => console.error('Permission request error:', err));
     } else {
         console.log('Notification permission already granted');
+        setupNotifications(); // Start notifications if already granted
     }
 }
 
@@ -27,30 +29,30 @@ function showNotification(title, message) {
 
 // Function to set up notifications
 function setupNotifications() {
-    // Hydration reminder every 2 seconds
-    setInterval(() => {
-        showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-    }, 2000); // 2 seconds
+    if (Notification.permission === 'granted') {
+        // Hydration reminder every 20 seconds
+        setInterval(() => {
+            showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
+        }, 20000); // 20 seconds
 
-    // Sunscreen reminder every 5 seconds
-    setInterval(() => {
-        showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
-    }, 5000); // 5 seconds
+        // Sunscreen reminder every 30 seconds
+        setInterval(() => {
+            showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
+        }, 30000); // 30 seconds
 
-    // Sustainable tips every 10 seconds
-    const tips = [
-        'Wear light-colored clothing to stay cool.',
-        'Use a fan or air conditioner wisely to reduce energy consumption.',
-        'Opt for eco-friendly cooling products.'
-    ];
-    setInterval(() => {
-        const randomTip = tips[Math.floor(Math.random() * tips.length)];
-        showNotification('Sustainable Tip', randomTip);
-    }, 10000); // 10 seconds
+        // Sustainable tips every 60 seconds
+        const tips = [
+            'Wear light-colored clothing to stay cool.',
+            'Use a fan or air conditioner wisely to reduce energy consumption.',
+            'Opt for eco-friendly cooling products.'
+        ];
+        setInterval(() => {
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            showNotification('Sustainable Tip', randomTip);
+        }, 60000); // 60 seconds
+    }
 }
 
-// Initialize notifications on page load
-window.onload = () => {
-    requestNotificationPermission();
-    setupNotifications();
-};
+// Call `requestNotificationPermission` on button click
+// (The button click should be present in your HTML)
+// <button onclick="requestNotificationPermission()">Enable Notifications</button>
