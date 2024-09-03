@@ -4,6 +4,7 @@ function requestNotificationPermission() {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
                 console.log('Notification permission granted');
+                setupNotifications(); // Start notifications only after permission is granted
                 initializeLocation(); // Fetch location once permission is granted
             } else {
                 console.error('Notification permission denied');
@@ -12,6 +13,7 @@ function requestNotificationPermission() {
     } else {
         console.log('Notification permission already granted');
         initializeLocation(); // Fetch location if permission is already granted
+        setupNotifications(); // Start notifications if already granted
     }
 }
 
@@ -45,24 +47,6 @@ function addNotificationToRecord(title, message) {
     notificationsOutput.prepend(notificationDiv);
 }
 
-// Show a browser notification and add it to the record
-function showNotification(title, message) {
-    if (Notification.permission === 'granted') {
-        // Create and display the browser notification
-        new Notification(title, {
-            body: message,
-            icon: 'path/to/icon.png' 
-        });
-
-        // Add the notification to the record in the HTML
-        addNotificationToRecord(title, message);
-    } else {
-        console.warn('Notification permission is not granted');
-    }
-}
-
-
-}
 // Fetch weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
     const apiKey = '78538db3899e42e29fa190912242508'; // Replace with your actual API key
@@ -291,12 +275,12 @@ function setupNotifications() {
         // Hydration reminder every 2 seconds
         setInterval(() => {
             showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-        }, 2000); // 2 seconds
+        }, 20000); // 20 seconds
 
         // Sunscreen reminder every 5 seconds
         setInterval(() => {
             showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
-        }, 5000); // 5 seconds
+        }, 25000); // 25 seconds
 
         // Sustainability tip every 5 seconds
         setInterval(fetchAndDisplayWeatherData, 6000); // 6 seconds
