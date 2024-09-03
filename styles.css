@@ -101,3 +101,28 @@ button:hover {
     border-radius: 4px;
 }
 
+#notifications-output {
+    display: flex;
+    flex-direction: column; /* Latest notification at the top */
+    margin: 20px 0;
+    max-height: 400px; /* Adjust based on preference */
+    overflow-y: auto; /* Add scrollbar if needed */
+}
+
+.notification {
+    background-color: #fff5c3; /* Light yellow for notifications */
+    color: #856404;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.notification time {
+    display: block;
+    font-size: 0.8em;
+    color: #856404;
+    margin-bottom: 5px;
+}
+
+
