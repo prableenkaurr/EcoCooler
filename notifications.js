@@ -1,31 +1,31 @@
-// Request permission to show notifications
+// Requests permission to show notifications
 function requestNotificationPermission() {
     if (Notification.permission !== 'granted') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
                 console.log('Notification permission granted');
-                setupNotifications(); // Start notifications only after permission is granted
-                initializeLocation(); // Fetch location once permission is granted
+                setupNotifications(); // Startes notifications only after permission is granted
+                initializeLocation(); // Fetches location once permission is granted
             } else {
                 console.error('Notification permission denied');
             }
         }).catch(err => console.error('Permission request error:', err));
     } else {
         console.log('Notification permission already granted');
-        initializeLocation(); // Fetch location if permission is already granted
-        setupNotifications(); // Start notifications if already granted
+        initializeLocation(); // Fetches location if permission is already granted
+        setupNotifications(); // Starts notifications if already granted
     }
 }
 
 function showNotification(title, message) {
     if (Notification.permission === 'granted') {
-        // Create and display the browser notification
+        // Creates and displays the browser notification
         new Notification(title, {
             body: message,
             icon: '/Users/prableenkakar/Downloads/SunShieldLogo'
         });
 
-        // Add the notification to the record in the HTML
+        // Adds the notification to the record in the HTML
         addNotificationToRecord(title, message);
     } else {
         console.warn('Notification permission is not granted');
@@ -33,7 +33,7 @@ function showNotification(title, message) {
 }
 
 
-// Add the notification to the record in the HTML
+// Adds the notification to the record in the HTML
 function addNotificationToRecord(title, message) {
     const notificationsOutput = document.getElementById('notifications-output');
     const notificationDiv = document.createElement('div');
@@ -43,13 +43,13 @@ function addNotificationToRecord(title, message) {
         <time>${new Date().toLocaleString()}</time>
         <p>${message}</p>
     `;
-    // Prepend new notifications to show the latest at the top
+    // Prepends new notifications to show the latest at the top
     notificationsOutput.prepend(notificationDiv);
 }
 
-// Fetch weather data based on location (latitude & longitude or city name)
+// Fetches weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
-    const apiKey = '78538db3899e42e29fa190912242508'; // Replace with your actual API key
+    const apiKey = '78538db3899e42e29fa190912242508';
     let url;
 
     if (location.latitude && location.longitude) {
@@ -61,18 +61,13 @@ async function fetchWeatherData(location) {
 
     const response = await fetch(url);
     const data = await response.json();
-    // Simulate a strong weather alert for testing
-    data.alert = {
-        type: 'storm', // Simulate a storm alert
-        description: 'A severe storm is approaching your area. Please take shelter immediately.'
-    };
 
     return data;
 }
 
 
 
-// Generate tips based on weather data
+// Generates tips based on weather data
 function generateSustainabilityTip(weatherData) {
     const { temp_c: temp, humidity, condition, alert } = weatherData.current;
     const weatherCondition = condition.text.toLowerCase();
@@ -103,7 +98,7 @@ function generateSustainabilityTip(weatherData) {
         tip = 'Choose sustainable practices to minimize your environmental impact.';
     }
 
-    // Strong weather alerts
+    // Severe weather alerts
     if (alert && alert.type) {
         switch (alert.type.toLowerCase()) {
             case 'heat':
@@ -203,17 +198,17 @@ function generateSustainabilityTip(weatherData) {
         'Use natural insulation materials to improve home energy efficiency.'
     ];
 
-    // Choose a tip
+    // Chooses a tip
     const useWeatherBasedTip = Math.random() < 0.5; // 50% chance to use weather-based tip
     if (useWeatherBasedTip) {
-        return tip; // Return weather-based tip
+        return tip; // Returns weather-based tip
     } else {
         const randomTip = specificTips[Math.floor(Math.random() * specificTips.length)];
-        return randomTip; // Return specific random tip
+        return randomTip; // Returns specific random tip
     }
 }
 
-// Get user's location using the Geolocation API
+// Gets user's location using the Geolocation API
 async function getUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -230,7 +225,7 @@ async function getUserLocation() {
     });
 }
 
-// Fetch and display sustainability tips and weather alerts
+// Fetches and displayes sustainability tips and weather alerts
 async function fetchAndDisplayWeatherData() {
     if (userLocation) {
         try {
@@ -265,35 +260,35 @@ async function fetchAndDisplayWeatherData() {
     }
 }
 
-// Initialize notifications and fetch location
+// Initializes notifications and fetches location
 async function initializeLocation() {
     try {
         userLocation = await getUserLocation();
 
-        // Start notifications setup
+        // Starts notifications setup
         setupNotifications();
     } catch (error) {
         console.error('Error initializing location:', error);
     }
 }
 
-// Setup notifications and intervals
+// Sets up notifications and intervals
 function setupNotifications() {
     if (Notification.permission === 'granted') {
         // Hydration reminder every 1 hour
         setInterval(() => {
             showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-        }, 20000); // 20 seconds for testing
+        }, 20000); // 20 seconds for testing purposes
 
         // Sunscreen reminder every 2 hours
         setInterval(() => {
             showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
-        }, 40000); // 40 seconds for testing
+        }, 40000); // 40 seconds for testing purposes
 
         // Sustainability/Weather tip every 3 hours
-        setInterval(fetchAndDisplayWeatherData, 60000); // 60 seconds
+        setInterval(fetchAndDisplayWeatherData, 60000); // 60 seconds for testing purposes
     }
 }
 
-// Start by requesting notification permission
+// Starts by requesting notification permission
 requestNotificationPermission();

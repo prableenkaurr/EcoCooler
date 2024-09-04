@@ -1,6 +1,3 @@
-/* styles.css */
-
-/* Apply a pink to orange gradient background */
 body {
     background: linear-gradient(to right, #cd5a6d, #f9a565);
     font-family: Arial, sans-serif;
@@ -105,12 +102,12 @@ button:hover {
     display: flex;
     flex-direction: column; /* Latest notification at the top */
     margin: 20px 0;
-    max-height: 400px; /* Adjust based on preference */
-    overflow-y: auto; /* Add scrollbar if needed */
+    max-height: 400px; 
+    overflow-y: auto; /* Adds scrollbar if needed */
 }
 
 .notification {
-    background-color: #fff5c3; /* Light yellow for notifications */
+    background-color: #fff5c3;
     color: #856404;
     border: 1px solid #ffffff;
     border-radius: 5px;

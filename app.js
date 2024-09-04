@@ -1,4 +1,4 @@
-// Get user's location using the Geolocation API
+// Gets user's location using the Geolocation API
 async function getUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -15,7 +15,7 @@ async function getUserLocation() {
     });
 }
 
-// Fetch weather data based on location (latitude & longitude or city name)
+// Fetches weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
     const apiKey = '78538db3899e42e29fa190912242508';
     let url;
@@ -32,7 +32,7 @@ async function fetchWeatherData(location) {
     return data;
 }
 
-// Get sunscreen recommendations based on skin type, UV index, and sensitivity
+// Gets sunscreen recommendations based on skin type, UV index, and sensitivity
 function getSunscreenRecommendation(skinType, uvIndex, isSensitive) {
     let spfRecommendation;
 
@@ -82,7 +82,7 @@ function getSunscreenRecommendation(skinType, uvIndex, isSensitive) {
         { brand: 'Organic Harvest Organic All Skin SPF 60 Sunscreen: Kakadu Plum, Acai Berry & Chia Seeds', SPF: '50+', skinType: 'combination', sensitive: true, url: 'https://www.organicharvest.in/product/all-skin-spf-60-sunscreen-kakadu-plum-acai-berry-chia-seeds-100g.html', description: 'High SPF with a gentle formula for sensitive skin.' }
     ];
 
-    // Filter suitable sunscreens by matching skin type, sensitivity, and recommended SPF
+    // Filters suitable sunscreens by matching skin type, sensitivity, and recommended SPF
     const suitableSunscreens = sunscreens.filter(s => 
         s.skinType === skinType && 
         s.sensitive === isSensitive && 
@@ -95,7 +95,7 @@ function getSunscreenRecommendation(skinType, uvIndex, isSensitive) {
     };
 }
 
-// Update sunscreen recommendations based on location, skin type, and sensitivity
+// Updates sunscreen recommendations based on location, skin type, and sensitivity
 async function updateSunscreenRecommendations(location) {
     const weatherData = await fetchWeatherData(location);
     const uvIndex = weatherData.current.uv;
@@ -114,7 +114,7 @@ async function updateSunscreenRecommendations(location) {
     `;
 }
 
-// Handle form submission for sunscreen recommendations
+// Handles form submission for sunscreen recommendations
 document.getElementById('sunscreen-form').onsubmit = async (event) => {
     event.preventDefault();
     
