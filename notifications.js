@@ -22,7 +22,7 @@ function showNotification(title, message) {
         // Create and display the browser notification
         new Notification(title, {
             body: message,
-            icon: 'path/to/icon.png'
+            icon: '/Users/prableenkakar/Downloads/SunShieldLogo'
         });
 
         // Add the notification to the record in the HTML
@@ -61,8 +61,16 @@ async function fetchWeatherData(location) {
 
     const response = await fetch(url);
     const data = await response.json();
+    // Simulate a strong weather alert for testing
+    data.alert = {
+        type: 'storm', // Simulate a storm alert
+        description: 'A severe storm is approaching your area. Please take shelter immediately.'
+    };
+
     return data;
 }
+
+
 
 // Generate tips based on weather data
 function generateSustainabilityTip(weatherData) {
@@ -272,18 +280,18 @@ async function initializeLocation() {
 // Setup notifications and intervals
 function setupNotifications() {
     if (Notification.permission === 'granted') {
-        // Hydration reminder every 2 seconds
+        // Hydration reminder every 1 hour
         setInterval(() => {
             showNotification('Hydration Reminder', 'It’s time to drink water. Stay hydrated!');
-        }, 20000); // 20 seconds
+        }, 20000); // 20 seconds for testing
 
-        // Sunscreen reminder every 5 seconds
+        // Sunscreen reminder every 2 hours
         setInterval(() => {
             showNotification('Sunscreen Reminder', 'Remember to reapply your sunscreen to protect your skin!');
-        }, 25000); // 25 seconds
+        }, 40000); // 40 seconds for testing
 
-        // Sustainability tip every 5 seconds
-        setInterval(fetchAndDisplayWeatherData, 15000); // 15 seconds
+        // Sustainability/Weather tip every 3 hours
+        setInterval(fetchAndDisplayWeatherData, 60000); // 60 seconds
     }
 }
 
