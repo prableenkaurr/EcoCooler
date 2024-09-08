@@ -17,7 +17,7 @@ async function getUserLocation() {
 
 // Fetches weather data based on location (latitude & longitude or city name)
 async function fetchWeatherData(location) {
-    const apiKey = '78538db3899e42e29fa190912242508';
+    const apiKey = '9980285236c041bbb4c70015240809';
     let url;
 
     if (location.latitude && location.longitude) {
